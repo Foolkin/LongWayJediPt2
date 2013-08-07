@@ -2,15 +2,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_black"
     tools:context=".MainActivity" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/part_label_margin_top"
+        android:text="@string/part_label" 
+        android:textSize="@dimen/part_label_Size"
+        android:textColor="@color/white"/>
+    
+    <LinearLayout
+        android:id="@+id/middle_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/middle_layout_margin_top"
+        android:orientation="vertical" >
+        
+        <VideoView 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footer_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/footer_layout_height"
+        android:layout_alignParentBottom="true" >
+        
+        <Button 
+        android:id="@+id/play_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/play_label"  />
+    </LinearLayout>
 
 </RelativeLayout>
