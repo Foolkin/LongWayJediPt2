@@ -22,6 +22,7 @@
         android:orientation="vertical" >
         
         <VideoView 
+            android:id="@+id/screen"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
     </LinearLayout>
@@ -36,7 +37,8 @@
         android:id="@+id/play_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/play_label"  />
+        android:text="@string/play_label" 
+        android:onClick="playClick" />
     </LinearLayout>
 
 </RelativeLayout>
