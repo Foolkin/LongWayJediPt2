@@ -5,40 +5,11 @@
     android:background="@color/light_black"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+	<VideoView 
+		android:id="@+id/VideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/part_label_margin_top"
-        android:text="@string/part_label" 
-        android:textSize="@dimen/part_label_Size"
-        android:textColor="@color/white"/>
-    
-    <LinearLayout
-        android:id="@+id/middle_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="@dimen/middle_layout_margin_top"
-        android:orientation="vertical" >
-        
-        <VideoView 
-            android:id="@+id/screen"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/footer_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/footer_layout_height"
-        android:layout_alignParentBottom="true" >
-        
-        <Button 
-        android:id="@+id/play_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/play_label" 
-        android:onClick="playClick" />
-    </LinearLayout>
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>
