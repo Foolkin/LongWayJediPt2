@@ -1,8 +1,13 @@
 package longwayjedi.pt2;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.ProgressDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -13,9 +18,16 @@ public class MainActivity extends Activity {
 	
 	String url = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
 	
+	// Put in your Video URL here
+	private String VideoURL = "http://www.androidbegin.com/tutorial/AndroidCommercial.3gp";
+	// Declare some variables
+	private ProgressDialog pDialog;
+	VideoView videoview;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// Set the layout from video_main.xml
 		setContentView(R.layout.activity_main);
 		
 		videoView = (VideoView)findViewById(R.id.VideoView);
@@ -23,11 +35,70 @@ public class MainActivity extends Activity {
 		videoView.setMediaController(new MediaController(this));
 		videoView.requestFocus();
 		videoView.start();
+		// Find your VideoView in your video_main.xml layout
+		videoview = (VideoView) findViewById(R.id.VideoView);
+		// Execute StreamVideo AsyncTask
+		new StreamVideo().execute();
+
 	}
 
+	// StreamVideo AsyncTask
+	private class StreamVideo extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			// Create a progressbar
+			pDialog = new ProgressDialog(MainActivity.this);
+			// Set progressbar title
+			pDialog.setTitle("Android Video Streaming Tutorial");
+			// Set progressbar message
+			pDialog.setMessage("Buffering...");
+			pDialog.setIndeterminate(false);
+			// Show progressbar
+			pDialog.show();
+
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void args) {
+
+			try {
+				// Start the MediaController
+				MediaController mediacontroller = new MediaController(
+						MainActivity.this);
+				mediacontroller.setAnchorView(videoview);
+				// Get the URL from String VideoURL
+				Uri video = Uri.parse(VideoURL);
+				videoview.setMediaController(mediacontroller);
+				videoview.setVideoURI(video);
+//				videoview.setVideoPath(path);
+
+				videoview.requestFocus();
+				videoview.setOnPreparedListener(new OnPreparedListener() {
+					// Close the progress bar and play the video
+					public void onPrepared(MediaPlayer mp) {
+						pDialog.dismiss();
+						videoview.start();
+					}
+				});
+			} catch (Exception e) {
+				pDialog.dismiss();
+				Log.e("Error", e.getMessage());
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	// Not using options menu for this tutorial
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
