@@ -3,7 +3,6 @@
 
     <string name="app_name">LongWayJediPt2</string>
     <string name="action_settings">Settings</string>
-    <string name="part_label">Part 2</string>
-    <string name="play_label">Play</string>
+    <string name="title_activity_video_player">VideoPlayerActivity</string>
 
 </resources>
